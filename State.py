@@ -1,18 +1,15 @@
 class State:
 
-    def __init__(self, frame, parent, move, zero_pos, avalible_moves):
+    def __init__(self, frame, parent, move, zero_pos, available_moves):
 
         self.frame = frame
         self.parent = parent
         self.move = move
         self.zero_position = zero_pos
-        self.available_moves = avalible_moves
-        pass
+        self.available_moves = available_moves
 
     def __eq__(self, other):
-        return self.frame == other.frame and \
-            self.parent == other.parent and \
-            self.move == other.move
+        return hash(self.frame) == hash(other.frame)
 
     def __repr__(self):
         print(self.frame)

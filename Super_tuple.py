@@ -14,16 +14,16 @@ class Tup:
         return '(' + ', '.join(str(digit) for digit in self.inner)+')'
 
 
-k = Tup(2, 3, 5, 6)
-d = Tup(4, 3, 2, 1)
-
-# print(k-d)
-print('________________________\n\n\n')
-print(k + (1, 2, 3, 4))
-print(k)
-
-
-
+# k = Tup(2, 3, 5, 6)
+# d = Tup(4, 3, 2, 1)
+#
+# # print(k-d)
+# print('________________________\n\n\n')
+# print(k + (1, 2, 3, 4))
+# print(k)
+#
+#
+#
 
 
 # def __sub__(self, other):

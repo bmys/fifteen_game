@@ -5,7 +5,7 @@ class BFS:
     def __init__(self, start):
         self.game = Fifteen(start)
         self.visited = {}
-        self.explored = {}
+        self.explored = set()
         pass
 
     def search(self):
@@ -13,8 +13,7 @@ class BFS:
         first_state = State(self.game.frame,
                             None,
                             None,
-                            self.game.zero_pos
-                            )
+                            self.game.zero_pos)
 
         if self.game.check_result(first_state):
             print('You win at first iteration!')

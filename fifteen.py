@@ -1,6 +1,7 @@
 import numpy as np
 from State import State
 
+
 class Fifteen:
 
     def __init__(self, arr):
