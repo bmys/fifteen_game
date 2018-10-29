@@ -1,5 +1,5 @@
 import unittest
-from State import State
+from state import State
 import numpy as np
 
 

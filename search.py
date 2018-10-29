@@ -1,5 +1,5 @@
 from game import *
-from State import State
+from state import State
 
 
 class BFS:
