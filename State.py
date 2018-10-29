@@ -12,7 +12,7 @@ class State:
         return hash(self.frame) == hash(other.frame)
 
     def __repr__(self):
-        print(self.frame)
+        return self.frame
 
     def __str__(self):
         return str(self.frame)

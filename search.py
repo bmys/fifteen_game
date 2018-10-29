@@ -1,9 +1,9 @@
-from fifteen import Fifteen, State
-
+from game import *
+from State import State
 
 class BFS:
     def __init__(self, start):
-        self.game = Fifteen(start)
+        self.game = Game(start)
         self.visited = {}
         self.explored = set()
         pass

@@ -30,8 +30,8 @@ class Game:
 
         return moves
 
-
     def check_result(self, state):
+        """Check if state array and goal array are equal"""
         if np.array_equal(state.frame, self.goal_matrix):
             print('You win')
             return True
@@ -59,10 +59,6 @@ def change_place(state, direction):
         'U': (-1, 0),
         'D': (1, 0)
     }
-
-    # tuple unpack
-    # a = Tup(*state.zero_pos)
-    # b = Tup(*choose[direction])
 
     new_place = tuple(map(operator.add, state.zero_pos, choose[direction]))
 
