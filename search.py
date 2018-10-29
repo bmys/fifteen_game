@@ -1,28 +1,22 @@
 from game import *
 from State import State
 
+
 class BFS:
     def __init__(self, start):
         self.game = Game(start)
         self.visited = {}
         self.explored = set()
-        pass
 
     def search(self):
-        # First state
-        first_state = State(self.game.frame,
-                            None,
-                            None,
-                            self.game.zero_pos)
+        # # First state
 
-        if self.game.check_result(first_state):
+        if self.game.check_result(self.game):
             print('You win at first iteration!')
-            return
+            return ''
 
-        print(self.game.check_result(first_state))
-
-        for move in self.game.available_moves(first_state):
-            new_state = self.game.swap(first_state, move)
+        for move in self.game.available_moves(self.game):
+            new_state = self.game.swap(self.game, move)
             print(new_state)
 
             # Check if this goal state

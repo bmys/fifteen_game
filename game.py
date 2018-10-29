@@ -7,12 +7,15 @@ class Game:
         self.frame = arr
         self.zero_pos = find_zero(self)
         self.frame_size = self.frame.shape
+        # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(self.frame_size)
         self.goal_matrix[-1][-1] = 0
-        # print('shape: %s \n zero_position: %s' % (self.frame_size, self.zero_pos))
 
     def available_moves(self, state):
-        """Return avaliable moves in this moment"""
+        """
+        Return avaliable moves in this state
+        :return:List of available moves
+        """
 
         moves = ['L', 'R', 'U', 'D']
 
@@ -31,7 +34,9 @@ class Game:
         return moves
 
     def check_result(self, state):
-        """Check if state array and goal array are equal"""
+        """Check if state array and goal array are equal
+        :return:Bool
+        """
         if np.array_equal(state.frame, self.goal_matrix):
             print('You win')
             return True
