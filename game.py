@@ -32,34 +32,11 @@ class Game:
 
     def can_move(self, direction):
         '''Check if this move can be done'''
+
         if direction in self.avalible_moves():
             return True
         else:
             return False
-
-    # def can_move(self, direction):
-    #
-    #     if direction == 'L':
-    #         if self.zero_pos[1] == 0:
-    #             return False
-    #
-    #     elif direction == 'R':
-    #         if self.zero_pos[1] == self.frame_size[1]:
-    #             return False
-    #
-    #     elif direction == 'U':
-    #         if self.zero_pos[0] == 0:
-    #             return False
-    #
-    #     elif direction == 'D':
-    #         if self.zero_pos[0] == self.frame_size[0]:
-    #             return False
-    #
-    #     else:
-    #         print('Wrong direction')
-    #         return None
-    #
-    #     return True
 
     def find_zero(self):
         """
@@ -69,7 +46,6 @@ class Game:
 
         temp = np.where(self.frame == 0)
         temp = tuple(np.concatenate(temp, axis=0))
-        # print(temp)
         return temp
 
     def swap(self, direction):
@@ -83,7 +59,7 @@ class Game:
         if direction in self.avalible_moves():
             self.change_place(choose[direction])
         else:
-            print('nihuhu')
+            print('nope')
 
         # print(self.frame[])
 
@@ -102,7 +78,7 @@ class Game:
 
     def check_result(self):
         if np.array_equal(self.frame, self.goal_matrix):
-            print('Wygrałes talon, na kurwe i balon')
+            print('You win')
 
 arr2 = np.array([[1, 2, 3],
                  [4, 5, 0],
@@ -119,10 +95,8 @@ while True:
     elif b == 'PG':
         print(a.goal_matrix)
     elif b in ['L', 'R', 'U', 'D']:
-        # print(a.can_move(b))
         a.swap(b)
         a.print()
         a.check_result()
     else:
-        print('Co Ty odpierdalasz?')
-        # print(a.avalible_moves())
+        print('wrong')
