@@ -1,6 +1,7 @@
 import numpy as np
 from Super_tuple import Tup
 
+
 class Game:
     def __init__(self, arr):
         self.frame = arr
@@ -10,9 +11,8 @@ class Game:
         self.goal_matrix[-1][-1] = 0
         print('shape: %s \n zero_position: %s' % (self.frame_size, self.zero_pos))
 
-
-    def avalible_moves(self):
-        '''Return avalible moves in this moment'''
+    def avaliable_moves(self):
+        """Return avaliable moves in this moment"""
 
         moves = ['L', 'R', 'U', 'D']
 
@@ -31,9 +31,8 @@ class Game:
         return moves
 
     def can_move(self, direction):
-        '''Check if this move can be done'''
-
-        if direction in self.avalible_moves():
+        """Check if this move can be done"""
+        if direction in self.avaliable_moves():
             return True
         else:
             return False
@@ -41,7 +40,7 @@ class Game:
     def find_zero(self):
         """
          Find "0" position in matrix
-        :return:
+        :return: tuple of zero coordinates
         """
 
         temp = np.where(self.frame == 0)
@@ -56,19 +55,17 @@ class Game:
             'D': (1, 0)
         }
 
-        if direction in self.avalible_moves():
+        if direction in self.avaliable_moves():
             self.change_place(choose[direction])
         else:
             print('nope')
-
-        # print(self.frame[])
 
     def change_place(self, direction):
         # tuple unpack
         a = Tup(*self.zero_pos)
         b = Tup(*direction)
-        new_place =  a + b
-        # print('New place: %s' % new_place)
+        new_place = a + b
+
         self.frame[self.zero_pos], self.frame[new_place] =\
             self.frame[new_place], self.frame[self.zero_pos]
         self.zero_pos = new_place
