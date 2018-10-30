@@ -14,7 +14,7 @@ class Game:
 
     def available_moves(self, zero_position):
         """
-        Return avaliable moves in this state
+        Return available moves in this state
         :param zero_position
         :return:List of available moves
         """
@@ -82,5 +82,3 @@ def find_zero(state):
     temp = np.where(state.frame == 0)
     temp = tuple(np.concatenate(temp, axis=0))
     return temp
-
-
