@@ -1,7 +1,13 @@
 class State:
 
-    def __init__(self, frame, parent, move, zero_pos, available_moves):
-
+    def __init__(self, frame: object, parent: object, move: object, zero_pos: object, available_moves: object) -> object:
+        """
+        :param frame:
+        :param parent:
+        :param move:
+        :param zero_pos:
+        :param available_moves:
+        """
         self.frame = frame
         self.parent = parent
         self.move = move
