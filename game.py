@@ -1,12 +1,12 @@
 import numpy as np
 import operator
-
+from state import State
 
 class Game:
     def __init__(self, arr):
         self.frame = arr
         self.zero_position = find_zero(self)
-        self.frame_size = self.frame.shape
+        self.frame_size = tuple(map(operator.sub, self.frame.shape, (1, 1)))
         # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(self.frame_size)
         self.goal_matrix[-1][-1] = 0
@@ -22,13 +22,13 @@ class Game:
         if state.zero_position[1] == 0:
             moves.remove('L')
 
-        if state.zero_position[1] == self.frame_size[1]-1:
+        if state.zero_position[1] == self.frame_size[1]:
             moves.remove('R')
 
         if state.zero_position[0] == 0:
             moves.remove('U')
 
-        if state.zero_position[0] == self.frame_size[0]-1:
+        if state.zero_position[0] == self.frame_size[0]:
             moves.remove('D')
 
         return moves
