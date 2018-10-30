@@ -5,7 +5,7 @@ import operator
 class Game:
     def __init__(self, arr):
         self.frame = arr
-        self.zero_pos = find_zero(self)
+        self.zero_position = find_zero(self)
         self.frame_size = self.frame.shape
         # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(self.frame_size)
@@ -65,8 +65,8 @@ def change_place(state, direction):
         'D': (1, 0)
     }
 
-    new_place = tuple(map(operator.add, state.zero_pos, choose[direction]))
+    new_place = tuple(map(operator.add, state.zero_position, choose[direction]))
 
     state.frame[state.zero_position], state.frame[new_place] = \
         state.frame[new_place], state.frame[state.zero_position]
-    state.zero_pos = new_place
+    state.zero_position = new_place

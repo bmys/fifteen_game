@@ -16,7 +16,7 @@ class BFS:
             return ''
 
         for move in self.game.available_moves(self.game):
-            new_state = self.game.swap(self.game, move)
+            new_state = change_place(self.game, move)
             print(new_state)
 
             # Check if this goal state
