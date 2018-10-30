@@ -18,4 +18,4 @@ class State:
         return str(self.frame)
 
     def __hash__(self):
-        return hash(self.frame)
+        return hash(self.frame.tostring())
