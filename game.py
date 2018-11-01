@@ -9,7 +9,7 @@ class Game:
         self.zero_position = find_zero(self)
         self.frame_size = tuple(map(operator.sub, self.frame.shape, (1, 1)))
         # Create goal matrix
-        self.goal_matrix = np.arange(1, self.frame.size+1).reshape(self.frame_size)
+        self.goal_matrix = np.arange(1, self.frame.size+1).reshape(arr.shape)
         self.goal_matrix[-1][-1] = 0
 
     def available_moves(self, zero_position):

@@ -1,11 +1,11 @@
 from game import *
 from state import State
-
+from collections import OrderedDict
 
 class BFS:
     def __init__(self, start):
         self.game = Game(start)
-        self.visited = {}
+        self.visited = OrderedDict()
         self.explored = set()
 
     def search(self):
@@ -28,7 +28,3 @@ class BFS:
                 self.visited[new_state.frame.tostring()] = new_state
             # if self.game.check_result(new_state):
             #     break
-
-
-
-
