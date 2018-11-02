@@ -22,11 +22,39 @@ class BFS:
                 print('you just win at second iteration')
                 return new_state.move
             else:
-                self.visited[new_state] = new_state
+                self.visited[hash(new_state)] = new_state
+
             print(new_state)
 
-        for value in self.visited:
-            print(value)
+        while len(self.visited) != 0:
+            for key, value in self.visited.items():
+
+                #If state already exists in visited or explored just skip it
+                if key in self.visited or key in self.explored:
+                    continue
+
+                #If this is goal state finish
+                if self.game.check_result(value):
+                    print('WIN WIN WIN!')
+                    return
+
+                #If state has no more moves, move it to explored
+                if len(value.available_moves) == 0:
+                    self.explored.add(self.visited.pop(key))
+                    continue
+
+                for move in value.available_moves:
+                    new_state = self.game.new_state(value, move)
+                    if self.game.check_result(new_state):
+                        print('Bravissimo!')
+                        return
+                    else:
+
+
+                print('__________')
+                print(key)
+                print(value)
+
         #
         #     # Check if this goal state
         #     if self.game.check_result(new_state):
