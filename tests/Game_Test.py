@@ -111,4 +111,20 @@ class GameTest(unittest.TestCase):
         self.assertEqual(State(arr3, None, None, (1, 2), None),
                          game.new_state(state1, 'L'))
 
+    def test_find_zero(self):
+        arr1 = np.array([
+            [1, 2, 3],
+            [4, 5, 0],
+            [7, 8, 6]])
+        arr2 = np.array([
+            [1, 2, 3],
+            [4, 0, 5],
+            [7, 8, 6]])
+
+        state1 = State(arr1, None, None, (1, 2), None)
+        state2 = State(arr2, None, None, (2, 2), None)
+
+        self.assertEqual(find_zero(state1), (1, 2))
+        self.assertEqual(find_zero(state2), (1, 1))
+
 
