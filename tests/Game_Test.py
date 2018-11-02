@@ -97,11 +97,18 @@ class GameTest(unittest.TestCase):
             [4, 5, 6],
             [7, 8, 0]])
 
+        arr3 = np.array([
+            [1, 2, 3],
+            [4, 0, 5],
+            [7, 8, 6]])
+
         game = Game(arr1)
 
         state1 = State(arr1, None, None, (1, 2), None)
         state2 = State(arr2, None, None, (2, 2), None)
 
         self.assertEqual(state2, game.new_state(state1, 'D'))
+        self.assertEqual(State(arr3, None, None, (1, 2), None),
+                         game.new_state(state1, 'L'))
 
 
