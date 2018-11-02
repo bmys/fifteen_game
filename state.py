@@ -15,7 +15,7 @@ class State:
         self.available_moves = available_moves
 
     def __eq__(self, other):
-        return hash(self.frame) == hash(other.frame)
+        return hash(self) == hash(other)
 
     def __repr__(self):
         return self.frame
