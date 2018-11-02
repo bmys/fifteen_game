@@ -52,8 +52,36 @@ class GameTest(unittest.TestCase):
             [7, 8, 0]])
         self.assertTrue(np.array_equal(game.goal_matrix, goal_matrix))
 
+    def test_available_moves(self):
+        state = np.array([
+            [1, 2, 3],
+            [4, 5, 0],
+            [7, 8, 6]])
+        game = Game(state)
 
+        self.assertEqual(game.available_moves((2, 2)), ['L', 'U'])
+        self.assertEqual(game.available_moves((0, 0)), ['R', 'D'])
+        self.assertEqual(game.available_moves((1, 1)), ['L', 'R', 'U', 'D'])
+        self.assertEqual(game.available_moves((0, 1)), ['L', 'R', 'D'])
+        self.assertEqual(game.available_moves((2, 1)), ['L', 'R', 'U'])
+        self.assertEqual(game.available_moves((1, 2)), ['L', 'U', 'D'])
 
+    def test_check_result(self):
 
+        arr1 = np.array([
+            [1, 2, 3],
+            [4, 5, 0],
+            [7, 8, 6]])
 
+        arr2 = np.array([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]])
 
+        game = Game(arr1)
+
+        state1 = State(arr2, None, None, (2,2), None)
+        state2 = State(arr1, None, None, (2,2), None)
+
+        self.assertTrue(game.check_result(state1))
+        self.assertFalse(game.check_result(state2))
