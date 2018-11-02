@@ -69,7 +69,7 @@ class Game:
         return State(new_frame, state, direction, new_place, self.available_moves(new_place))
 
     def __repr__(self):
-        return self.frame
+        return str(self.frame)
 
 
 def find_zero(state):
