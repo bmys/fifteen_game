@@ -80,8 +80,28 @@ class GameTest(unittest.TestCase):
 
         game = Game(arr1)
 
-        state1 = State(arr2, None, None, (2,2), None)
-        state2 = State(arr1, None, None, (2,2), None)
+        state1 = State(arr2, None, None, (2, 2), None)
+        state2 = State(arr1, None, None, (2, 2), None)
 
         self.assertTrue(game.check_result(state1))
         self.assertFalse(game.check_result(state2))
+
+    def test_new_state(self):
+        arr1 = np.array([
+            [1, 2, 3],
+            [4, 5, 0],
+            [7, 8, 6]])
+
+        arr2 = np.array([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]])
+
+        game = Game(arr1)
+
+        state1 = State(arr1, None, None, (1, 2), None)
+        state2 = State(arr2, None, None, (2, 2), None)
+
+        self.assertEqual(state2, game.new_state(state1, 'D'))
+
+
