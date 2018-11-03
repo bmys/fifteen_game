@@ -65,7 +65,7 @@ class Game:
         # swap elements
         new_frame[state.zero_position], new_frame[new_place] = \
             new_frame[new_place], new_frame[state.zero_position]
-        state.available_moves.pop(direction)
+        # state.available_moves.pop(direction)
         return State(new_frame, state, direction, new_place, self.available_moves(new_place))
 
     def __repr__(self):

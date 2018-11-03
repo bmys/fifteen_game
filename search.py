@@ -14,55 +14,27 @@ class BFS:
 
         if self.game.check_result(self.game):
             return ''
-
-        # Expand first state
-        for move in self.game.available_moves(self.game.zero_position):
-            new_state = self.game.new_state(self.game, move)
-            if self.game.check_result(new_state):
-                print('you just win at second iteration')
-                return new_state.move
-            else:
+        else:
+            first_state = State(self.game.frame, None, None, self.game.zero_position, self.game.available_moves(self.game.zero_position))
+            for move in self.game.available_moves(self.game.zero_position):
+                new_state = self.game.new_state(first_state, move)
                 self.visited[hash(new_state)] = new_state
 
-            print(new_state)
-
-        while len(self.visited) != 0:
-            for key, value in self.visited.items():
-
-                #If state already exists in visited or explored just skip it
-                if key in self.visited or key in self.explored:
-                    continue
-
-                #If this is goal state finish
-                if self.game.check_result(value):
-                    print('WIN WIN WIN!')
-                    return
-
-                #If state has no more moves, move it to explored
-                if len(value.available_moves) == 0:
-                    self.explored.add(self.visited.pop(key))
-                    continue
-
-                for move in value.available_moves:
-                    new_state = self.game.new_state(value, move)
-                    if self.game.check_result(new_state):
-                        print('Bravissimo!')
-                        return
-                    else:
+            while len(self.visited) != 0:
+                current_state = self.visited.popitem()[1]
+                if self.game.check_result(current_state):
+                    print('U win!')
+                    return ''
+                else:
+                    for move in self.game.available_moves(current_state.zero_position):
+                        other_state = State(current_state.frame,
+                                            current_state, move,
+                                            current_state.zero_position,
+                                            self.game.available_moves(current_state))
+                        if self.game.check_result(other_state):
+                            return ''
+                        else:
+                            self.visited[hash(current_state)] = current_state
 
 
-                print('__________')
-                print(key)
-                print(value)
-
-        #
-        #     # Check if this goal state
-        #     if self.game.check_result(new_state):
-        #         for key, value in self.visited.items():
-        #             print('%s : \n%s\n' % (key, value))
-        #         return
-        #     else:
-        #         self.visited[new_state.frame.tostring()] = new_state
-        #     # if self.game.check_result(new_state):
-        #     #     break
-        pass
+            current_state = self.game
