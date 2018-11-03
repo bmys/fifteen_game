@@ -26,11 +26,12 @@ class BFS:
                     print('U win!')
                     return ''
                 else:
+                    self.explored.add(hash(current_state))
                     for move in self.game.available_moves(current_state.zero_position):
                         other_state = State(current_state.frame,
                                             current_state, move,
                                             current_state.zero_position,
-                                            self.game.available_moves(current_state))
+                                            self.game.available_moves(current_state.zero_position))
                         if self.game.check_result(other_state):
                             return ''
                         else:
