@@ -11,6 +11,13 @@ class Game:
         # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(arr.shape)
         self.goal_matrix[-1][-1] = 0
+        self.choose = {
+            'L': (0, -1),
+            'R': (0, 1),
+            'U': (-1, 0),
+            'D': (1, 0)
+        }
+
 
     def available_moves(self, zero_position):
         """
@@ -52,21 +59,21 @@ class Game:
         :param direction:
         :return: new state
         """
-        choose = {
-            'L': (0, -1),
-            'R': (0, 1),
-            'U': (-1, 0),
-            'D': (1, 0)
-        }
 
-        new_place = tuple(map(operator.add, state.zero_position, choose[direction]))
+        new_place = tuple(map(operator.add, state.zero_position, self.choose[direction]))
         new_frame = np.copy(state.frame)
 
         # swap elements
         new_frame[state.zero_position], new_frame[new_place] = \
             new_frame[new_place], new_frame[state.zero_position]
         # state.available_moves.pop(direction)
-        return State(new_frame, state, direction, new_place, self.available_moves(new_place))
+        new_moves = self.available_moves(new_place)
+        try:
+            new_moves.remove(direction)
+        except ValueError:
+            pass
+
+        return State(new_frame, state, direction, new_place, new_moves)
 
     def __repr__(self):
         return str(self.frame)
