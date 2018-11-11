@@ -22,7 +22,7 @@ class State:
         if self.move is None:
             return path
         else:
-            # print(self.move)
+            print(self.move)
             return self.parent.get_path(self.move + path)
 
     def __eq__(self, other):

@@ -61,12 +61,32 @@ class DFS:
 
         self.frontier = list()
 
-        self.explored = set()
+        self.visited = set()
+
+    def expand(self):
+
+        state = self.frontier.pop(0)
+        self.visited.add(state)
+        expand_list = []
+
+        if state.rec <= 10:
+            for move in self.game.available_moves(state.zero_position):
+                other_state = self.game.new_state(state, move)
+                other_state.rec = state.rec + 1
+                if other_state in self.visited:
+                    continue
+
+                if self.game.check_result(other_state):
+                    print('Win Wiecej niz 1 iteracje')
+                    return other_state.get_path()
+
+                else:
+                    expand_list.append(other_state)
+
+            self.frontier = expand_list + self.frontier
+        self.expand()
 
     def search(self):
-
-        def expand(recursion_level):
-            pass
 
         # Fill firsts states
         if self.game.check_result(self.game):
@@ -75,30 +95,9 @@ class DFS:
         first_state = State(self.game.frame, None, None,
                             self.game.zero_position,
                             self.game.available_moves(self.game.zero_position))
+        first_state.rec = 0
+        self.frontier.append(first_state)
 
-        for move in self.game.available_moves(first_state.zero_position):
+        return self.expand()
 
-            new_state = self.game.new_state(first_state, move)
-            if self.game.check_result(new_state):
-                return new_state.move
 
-            self.frontier[hash(new_state)] = new_state
-        del first_state
-
-        while len(self.frontier) != 0:
-
-            current_state = iter(self.frontier).__next__()
-
-            current_state = self.frontier.pop(current_state)
-
-            for move in self.game.available_moves(current_state.zero_position):
-                other_state = self.game.new_state(current_state, move)
-                if other_state in self.frontier or other_state in self.explored:
-                    continue
-                if self.game.check_result(other_state):
-                    print('Win Wiecej niz 1 iteracje')
-                    return other_state.get_path()
-                else:
-                    self.frontier[hash(other_state)] = other_state
-            self.explored.add(current_state)
-            current_state = self.game
