@@ -8,7 +8,7 @@ def hamming(state, goal):
     new_arr[-1][-1] = -999
     zero_pos = np.where(new_arr == 0)
     score = len(zero_pos[0])
-    return -score-1, state
+    return -score, state
 
 
 def manhattan(state, goal):
@@ -18,7 +18,7 @@ def manhattan(state, goal):
 
     score = 0
 
-    for i in range(1, goal.size - 1):
+    for i in range(1, goal.size):
         goal_position = find_position(goal, i)
         current_position = find_position(state.frame, i)
 

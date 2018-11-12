@@ -111,7 +111,7 @@ class DFS:
 
 class AStar:
     def __init__(self, start, metric=None):
-        self.metric = hamming if metric == 'hamming' else manhattan
+        self.metric = hamming if metric == 'h' else manhattan
         self.game = Game(start)
 
         self.frontier = queue.PriorityQueue()
