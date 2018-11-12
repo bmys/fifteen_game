@@ -4,7 +4,14 @@ import operator
 
 
 def hamming(state, goal):
+    new_arr = state.frame - goal
+    new_arr[-1][-1] = -999
+    zero_pos = np.where(new_arr == 0)
+    score = len(zero_pos[0])
+    return -score-1, state
 
+
+def manhattan(state, goal):
     def find_position(board, number):
         temp = np.where(board == number)
         return tuple(np.concatenate(temp, axis=0))
@@ -20,10 +27,3 @@ def hamming(state, goal):
         score += distance
     return score, state
 
-
-def manhattan(state, goal):
-    new_arr = state.frame - goal
-    new_arr[-1][-1] = -999
-    zero_pos = np.where(new_arr == 0)
-    score = len(zero_pos[0])
-    return -score, state
