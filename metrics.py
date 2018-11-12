@@ -11,11 +11,11 @@ def hamming(state, goal):
 
     score = 0
 
-    for i in range(len(goal)-1):
+    for i in range(1, goal.size - 1):
         goal_position = find_position(goal, i)
-        current_position = find_position(state, i)
+        current_position = find_position(state.frame, i)
 
-        distance = sum(map(operator.sub, goal_position, current_position))
+        distance = abs(sum(map(operator.sub, goal_position, current_position)))
 
         score += distance
     return score, state
@@ -24,4 +24,4 @@ def hamming(state, goal):
 def manhattan(state, goal):
     new_arr = goal - state.frame
     score = len(np.where(new_arr == 0))
-    return score, state
+    return -score+1, state

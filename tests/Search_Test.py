@@ -94,14 +94,28 @@ class BFSTest(unittest.TestCase):
         #     [7, 4, 3],
         #     [0, 8, 6]], dtype=np.uint8)
 
-        state_array = np.array([
-            [1, 0, 2],
-            [4, 5, 3],
-            [7, 8, 6]], dtype=np.uint8)
+        # state_array = np.array([
+        #     [1, 5, 2],
+        #     [4, 8, 3],
+        #     [7, 0, 6]], dtype=np.uint8)
+
+        # state_array = np.array([
+        #     [4, 1, 3],
+        #     [7, 2, 6],
+        #     [5, 0, 8]], dtype=np.uint8)
+
+
+        state_array = np.array(
+            [
+            [5, 1, 3,  4],
+            [0,2, 6,   8],
+            [9, 10, 7, 11],
+            [13, 14, 15, 12]
+            ],dtype=np.uint8)
 
         start_time = time.perf_counter()
 
-        dfs = AStar(state_array)
+        dfs = AStar(state_array, 'hamming')
         path = dfs.search()
         endtime = time.perf_counter()
 

@@ -135,7 +135,8 @@ class AStar:
                 return other_state.get_path()
 
             else:
-                self.frontier.put(self.metric(other_state, self.game.frame))
+                val = self.metric(other_state, self.game.goal_matrix)
+                self.frontier.put(val)
 
         return False
 
@@ -149,7 +150,7 @@ class AStar:
                             self.game.zero_position,
                             self.game.available_moves(self.game.zero_position))
 
-        self.frontier.put(self.metric(first_state, self.game.frame))
+        self.frontier.put(self.metric(first_state, self.game.goal_matrix))
 
         while True:
             found_solution = self._expand()
