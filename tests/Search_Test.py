@@ -1,6 +1,6 @@
 import unittest
 from state import State
-from search import BFS, DFS
+from search import BFS, DFS, AStar
 
 
 import numpy as np
@@ -83,7 +83,7 @@ class BFSTest(unittest.TestCase):
     #     print('Time: %s' % str(endtime - start_time))
     #     print('Path %s' % path)
 
-    def test_search2(self):
+    def test_search5(self):
         # state_array = np.array([
         #     [1, 0, 2],
         #     [4, 5, 3],
@@ -96,9 +96,32 @@ class BFSTest(unittest.TestCase):
 
         start_time = time.perf_counter()
 
-        dfs = DFS(state_array)
+        dfs = AStar(state_array)
         path = dfs.search()
         endtime = time.perf_counter()
 
         print('Time: %s' % str(endtime - start_time))
         print('Path %s' % path)
+
+    # def test_search2(self):
+    #     # state_array = np.array([
+    #     #     [1, 0, 2],
+    #     #     [4, 5, 3],
+    #     #     [7, 8, 6]])
+    #
+    #     state_array = np.array([
+    #         [1, 5, 2],
+    #         [7, 4, 3],
+    #         [0, 8, 6]], dtype=np.uint8)
+    #
+    #     start_time = time.perf_counter()
+    #
+    #     dfs = DFS(state_array)
+    #     path = dfs.search()
+    #     endtime = time.perf_counter()
+    #
+    #     print('Time: %s' % str(endtime - start_time))
+    #     print('Path %s' % path)
+    #
+    #
+    #
