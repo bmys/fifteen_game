@@ -115,7 +115,7 @@ class BFSTest(unittest.TestCase):
 
         start_time = time.perf_counter()
 
-        dfs = AStar(state_array, 'hamming')
+        dfs = AStar(state_array)
         path = dfs.search()
         endtime = time.perf_counter()
 
