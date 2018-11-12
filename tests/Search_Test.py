@@ -92,7 +92,7 @@ class BFSTest(unittest.TestCase):
         state_array = np.array([
             [1, 5, 2],
             [7, 4, 3],
-            [0, 8, 6]])
+            [0, 8, 6]], dtype=np.uint8)
 
         start_time = time.perf_counter()
 

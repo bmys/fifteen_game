@@ -63,13 +63,13 @@ class DFS:
 
         self.visited = set()
 
-    def expand(self):
+    def _expand(self):
 
         state = self.frontier.pop(0)
         self.visited.add(state)
         expand_list = []
 
-        if state.rec < 15:
+        if state.rec < 20:
             for move in self.game.available_moves(state.zero_position):
                 other_state = self.game.new_state(state, move)
 
@@ -101,11 +101,11 @@ class DFS:
         self.frontier.append(first_state)
 
         while True:
-            a = self.expand()
-            if a is False:
+            found_solution = self._expand()
+            if found_solution is False:
                 continue
             else:
-                return a
+                return found_solution
 
 
 
