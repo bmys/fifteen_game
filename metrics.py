@@ -23,5 +23,5 @@ def hamming(state, goal):
 
 def manhattan(state, goal):
     new_arr = goal - state.frame
-    score = len(np.where(new_arr.frame == 0))
+    score = len(np.where(new_arr == 0))
     return score, state

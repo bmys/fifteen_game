@@ -1,7 +1,7 @@
 from game import *
 from state import State
 from collections import OrderedDict
-from metrics import hamming
+from metrics import hamming, manhattan
 import queue
 
 class BFS:
@@ -110,7 +110,8 @@ class DFS:
 
 
 class AStar:
-    def __init__(self, start):
+    def __init__(self, start, metric=None):
+        self.metric = hamming if metric == 'hamming' else manhattan
         self.game = Game(start)
 
         self.frontier = queue.PriorityQueue()
@@ -134,7 +135,7 @@ class AStar:
                 return other_state.get_path()
 
             else:
-                self.frontier.put(hamming(other_state, self.game.frame))
+                self.frontier.put(self.metric(other_state, self.game.frame))
 
         return False
 
@@ -148,7 +149,7 @@ class AStar:
                             self.game.zero_position,
                             self.game.available_moves(self.game.zero_position))
 
-        self.frontier.put(hamming(first_state, self.game.frame))
+        self.frontier.put(self.metric(first_state, self.game.frame))
 
         while True:
             found_solution = self._expand()
