@@ -69,7 +69,7 @@ class DFS:
         self.visited.add(state)
         expand_list = []
 
-        if state.rec <= 15:
+        if state.rec < 15:
             for move in self.game.available_moves(state.zero_position):
                 other_state = self.game.new_state(state, move)
 
