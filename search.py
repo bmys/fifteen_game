@@ -69,12 +69,14 @@ class DFS:
         self.visited.add(state)
         expand_list = []
 
-        if state.rec <= 10:
+        if state.rec <= 15:
             for move in self.game.available_moves(state.zero_position):
                 other_state = self.game.new_state(state, move)
-                other_state.rec = state.rec + 1
+
                 if other_state in self.visited:
                     continue
+
+                other_state.rec = state.rec + 1
 
                 if self.game.check_result(other_state):
                     print('Win Wiecej niz 1 iteracje')
@@ -84,7 +86,7 @@ class DFS:
                     expand_list.append(other_state)
 
             self.frontier = expand_list + self.frontier
-        self.expand()
+        return False
 
     def search(self):
 
@@ -98,6 +100,12 @@ class DFS:
         first_state.rec = 0
         self.frontier.append(first_state)
 
-        return self.expand()
+        while True:
+            a = self.expand()
+            if a is False:
+                continue
+            else:
+                return a
+
 
 

@@ -84,10 +84,16 @@ class BFSTest(unittest.TestCase):
     #     print('Path %s' % path)
 
     def test_search2(self):
+        # state_array = np.array([
+        #     [1, 0, 2],
+        #     [4, 5, 3],
+        #     [7, 8, 6]])
+
         state_array = np.array([
-            [1, 2, 0],
-            [4, 5, 3],
-            [7, 8, 6]])
+            [1, 5, 2],
+            [7, 4, 3],
+            [0, 8, 6]])
+
         start_time = time.perf_counter()
 
         dfs = DFS(state_array)
