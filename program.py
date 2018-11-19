@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from sys import argv
 import numpy as np
 
@@ -14,6 +15,12 @@ def load_puzzle(file_name):
         text[idx] = tuple(int(i) for i in line.split(' '))
     return np.array(text)
 
+
+def save_to_file(name, solution):
+    with open(name, 'w') as file:
+        file.write(solution)
+
+
 if len(argv) > 1:
     #load console args
     method, spec, file_names = argv[1], argv[2], argv[3:]
@@ -24,9 +31,14 @@ if len(argv) > 1:
 
     search_type = {'bfs': BFS, 'dfs': DFS}
 
-    puzzle = load_puzzle('puzzles/' + file_names[0])
+    puzzle = load_puzzle( file_names[0])
 
     search = search_type[method](puzzle)
 
-    print(search.search())
+    # print(file_names)
+    solution = search.search()
+    print(solution)
+    save_to_file(file_names[1], solution)
+
+
 
