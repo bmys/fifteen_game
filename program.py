@@ -1,7 +1,8 @@
 from sys import argv
 import numpy as np
 
-from search import BFS, DFS
+from search.bfs import BFS
+from search.dfs import DFS
 
 
 def load_puzzle(file_name):

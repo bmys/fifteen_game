@@ -17,7 +17,13 @@ class Game:
             'U': (-1, 0),
             'D': (1, 0)
         }
-
+        self.pop_list = {
+            'L': 'R',
+            'R': 'L',
+            'U': 'D',
+            'D': 'U',
+            None: None
+        }
 
     def available_moves(self, zero_position):
         """
@@ -68,8 +74,9 @@ class Game:
             new_frame[new_place], new_frame[state.zero_position]
         # state.available_moves.pop(direction)
         new_moves = self.available_moves(new_place)
+
         try:
-            new_moves.remove(direction)
+            new_moves.remove(self.pop_list[direction])
         except ValueError:
             pass
 

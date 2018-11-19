@@ -17,7 +17,7 @@ class DFS:
         expand_list = []
 
         if state.rec < 20:
-            for move in self.game.available_moves(state.zero_position):
+            for move in state.available_moves:
                 other_state = self.game.new_state(state, move)
 
                 if self.game.check_result(other_state):
@@ -26,6 +26,13 @@ class DFS:
 
                 if other_state in self.visited:
                     continue
+
+                # a = False
+                # for st in self.frontier:
+                #     a = True if np.array_equal(st.frame, other_state.frame) else False
+
+                # if a:
+                #     continue
 
                 else:
                     other_state.rec = state.rec + 1

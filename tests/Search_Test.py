@@ -1,6 +1,8 @@
 import unittest
 from state import State
-from search import BFS, DFS, AStar
+from search.bfs import BFS
+from search.dfs import DFS
+
 from program import load_puzzle
 
 import numpy as np
@@ -149,7 +151,7 @@ class BFSTest(unittest.TestCase):
         state_array = load_puzzle('../puzzles/4x4_07_00002.txt')
         start_time = time.perf_counter()
 
-        dfs = DFS(state_array)
+        dfs = BFS(state_array)
         path = dfs.search()
         endtime = time.perf_counter()
 
