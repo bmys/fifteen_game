@@ -47,3 +47,21 @@ class ManhattanTest(unittest.TestCase):
         dist = manhattan(state, goal_array)
 
         self.assertEqual(dist[0], 2)
+
+    def test_distance3(self):
+
+        state_array = np.array([
+            [5, 2, 3],
+            [4, 1, 6],
+            [7, 8, 0]])
+
+        goal_array = np.array([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]])
+
+        state = mockObj(state_array)
+
+        dist = manhattan(state, goal_array)
+
+        self.assertEqual(dist[0], 4)

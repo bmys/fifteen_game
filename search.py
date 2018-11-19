@@ -74,8 +74,8 @@ class DFS:
             for move in self.game.available_moves(state.zero_position):
                 other_state = self.game.new_state(state, move)
 
-                if other_state in self.visited:
-                    continue
+                # if other_state in self.visited:
+                #     continue
 
                 other_state.rec = state.rec + 1
 

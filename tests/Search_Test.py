@@ -1,7 +1,7 @@
 import unittest
 from state import State
 from search import BFS, DFS, AStar
-
+from program import load_puzzle
 
 import numpy as np
 from collections import OrderedDict
@@ -84,10 +84,10 @@ class BFSTest(unittest.TestCase):
     #     print('Path %s' % path)
 
     def test_search5(self):
-        state_array = np.array([
-            [1, 2, 3],
-            [4, 0, 5],
-            [7, 8, 6]])
+        # state_array = np.array([
+        #     [1, 2, 3],
+        #     [4, 0, 5],
+        #     [7, 8, 6]])
 
         # state_array = np.array([
         #     [1, 5, 2],
@@ -122,9 +122,34 @@ class BFSTest(unittest.TestCase):
         # [13, 14, 15, 12]
         # ])
 
+        # state_array = np.array(
+        # [
+        # [1, 0, 2,  4],
+        # [5, 6, 3,  7],
+        # [9, 10, 11,8],
+        # [13, 14, 15, 12]
+        # ])
+
+        # state_array = np.array(
+        # [
+        # [1, 3, 4,  0],
+        # [5, 2,  6, 8],
+        # [9, 10, 7, 12],
+        # [13, 14, 11, 15]
+        # ])
+
+        # state_array = np.array(
+        # [
+        # [1, 2, 0,  3],
+        # [5, 6,  7, 4],
+        # [9, 10,11, 8],
+        # [13, 14, 15, 12 ]
+        # ])
+
+        state_array = load_puzzle('../puzzles/4x4_07_00002.txt')
         start_time = time.perf_counter()
 
-        dfs = AStar(state_array)
+        dfs = DFS(state_array)
         path = dfs.search()
         endtime = time.perf_counter()
 
