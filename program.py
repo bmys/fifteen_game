@@ -63,6 +63,7 @@ if len(argv) > 1:
     # print(file_names)
     solution = search.search()
     print(solution)
+    solution = '' if solution is None else solution
     save_to_file(file_names[1], solution)
 
 
