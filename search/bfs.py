@@ -4,8 +4,8 @@ from game import *
 
 
 class BFS:
-    def __init__(self, start):
-        self.game = Game(start)
+    def __init__(self, start, s_order):
+        self.game = Game(start, s_order)
         self.frontier = OrderedDict()
         self.explored = set()
 

@@ -5,6 +5,31 @@ import numpy as np
 from search.bfs import BFS
 from search.dfs import DFS
 
+search_order = {'DLRU': ['D', 'L', 'R', 'U'],
+ 'DLUR': ['D', 'L', 'U', 'R'],
+ 'DRLU': ['D', 'R', 'L', 'U'],
+ 'DRUL': ['D', 'R', 'U', 'L'],
+ 'DULR': ['D', 'U', 'L', 'R'],
+ 'DURL': ['D', 'U', 'R', 'L'],
+ 'LDRU': ['L', 'D', 'R', 'U'],
+ 'LDUR': ['L', 'D', 'U', 'R'],
+ 'LRDU': ['L', 'R', 'D', 'U'],
+ 'LRUD': ['L', 'R', 'U', 'D'],
+ 'LUDR': ['L', 'U', 'D', 'R'],
+ 'LURD': ['L', 'U', 'R', 'D'],
+ 'RDLU': ['R', 'D', 'L', 'U'],
+ 'RDUL': ['R', 'D', 'U', 'L'],
+ 'RLDU': ['R', 'L', 'D', 'U'],
+ 'RLUD': ['R', 'L', 'U', 'D'],
+ 'RUDL': ['R', 'U', 'D', 'L'],
+ 'RULD': ['R', 'U', 'L', 'D'],
+ 'UDLR': ['U', 'D', 'L', 'R'],
+ 'UDRL': ['U', 'D', 'R', 'L'],
+ 'ULDR': ['U', 'L', 'D', 'R'],
+ 'ULRD': ['U', 'L', 'R', 'D'],
+ 'URDL': ['U', 'R', 'D', 'L'],
+ 'URLD': ['U', 'R', 'L', 'D']}
+
 
 def load_puzzle(file_name):
     with open(file_name, 'r') as file:
@@ -32,8 +57,8 @@ if len(argv) > 1:
     search_type = {'bfs': BFS, 'dfs': DFS}
 
     puzzle = load_puzzle( file_names[0])
-
-    search = search_type[method](puzzle)
+    s_order = search_order[spec.upper()]
+    search = search_type[method](puzzle, s_order)
 
     # print(file_names)
     solution = search.search()

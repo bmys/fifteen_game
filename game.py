@@ -1,22 +1,24 @@
 import numpy as np
 import operator
 from state import State
-
+from copy import copy
 
 class Game:
-    def __init__(self, arr):
+    def __init__(self, arr, s_order):
         self.frame = arr
         self.zero_position = find_zero(self)
         self.frame_size = tuple(map(operator.sub, self.frame.shape, (1, 1)))
         # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(arr.shape)
         self.goal_matrix[-1][-1] = 0
+
         self.choose = {
             'L': (0, -1),
             'R': (0, 1),
             'U': (-1, 0),
             'D': (1, 0)
         }
+
         self.pop_list = {
             'L': 'R',
             'R': 'L',
@@ -25,6 +27,8 @@ class Game:
             None: None
         }
 
+        self.s_order = s_order
+
     def available_moves(self, zero_position):
         """
         Return available moves in this state
@@ -32,7 +36,7 @@ class Game:
         :return:List of available moves
         """
 
-        moves = ['L', 'R', 'U', 'D']
+        moves = copy(self.s_order)
 
         if zero_position[1] == 0:
             moves.remove('L')

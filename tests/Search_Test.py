@@ -151,7 +151,7 @@ class BFSTest(unittest.TestCase):
         state_array = load_puzzle('../puzzles/4x4_07_00002.txt')
         start_time = time.perf_counter()
 
-        dfs = BFS(state_array)
+        dfs = DFS(state_array, ['L', 'R', 'U', 'D'])
         path = dfs.search()
         endtime = time.perf_counter()
 
