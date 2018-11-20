@@ -58,7 +58,6 @@ class Game:
         :return:Bool
         """
         if np.array_equal(state.frame, self.goal_matrix):
-            print('You win')
             return True
         return False
 
