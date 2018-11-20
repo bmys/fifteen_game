@@ -4,6 +4,7 @@ import numpy as np
 
 from search.bfs import BFS
 from search.dfs import DFS
+from search.astar import AStar
 
 search_order = {'DLRU': ['D', 'L', 'R', 'U'],
  'DLUR': ['D', 'L', 'U', 'R'],
@@ -54,11 +55,17 @@ if len(argv) > 1:
     # print(f'spec: {spec}')
     # print('file_names:')
 
-    search_type = {'bfs': BFS, 'dfs': DFS}
+    search_type = {'bfs': BFS, 'dfs': DFS, 'astar': AStar}
 
     puzzle = load_puzzle( file_names[0])
-    s_order = search_order[spec.upper()]
-    search = search_type[method](puzzle, s_order)
+    # print(f'specs: {spec}')
+
+    if method != 'astar':
+        specific = search_order[spec.upper()]
+    else:
+        specific = spec.upper()
+
+    search = search_type[method](puzzle, specific)
 
     # print(file_names)
     solution = search.search()

@@ -149,7 +149,7 @@ class BFSTest(unittest.TestCase):
         # [13, 14, 15, 12 ]
         # ])
 
-        state_array = load_puzzle('../puzzles/4x4_07_00050.txt')
+        state_array = load_puzzle('../puzzles/4x4_07_00051.txt')
         start_time = time.perf_counter()
 
         dfs = AStar(state_array,'l')

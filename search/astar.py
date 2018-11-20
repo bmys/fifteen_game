@@ -6,8 +6,8 @@ import queue
 
 class AStar:
     def __init__(self, start, metric=None):
-        self.metric = hamming if metric == 'h' else manhattan
-        self.game = Game(start, ['L','U','R','D'])
+        self.metric = hamming if metric == 'H' else manhattan
+        self.game = Game(start, ['L', 'U', 'R', 'D'])
 
         self.frontier = queue.PriorityQueue()
 
