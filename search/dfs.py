@@ -21,7 +21,6 @@ class DFS:
                 other_state = self.game.new_state(state, move)
 
                 if self.game.check_result(other_state):
-                    print('Win Wiecej niz 1 iteracje')
                     return other_state.get_path()
 
                 if other_state in self.visited:
