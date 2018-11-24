@@ -13,7 +13,6 @@ class DFS:
     def _expand(self):
 
         state = self.frontier.pop(0)
-        self.visited[state] = state.rec
         expand_list = []
         recursion_level = state.rec + 1
 
@@ -25,12 +24,11 @@ class DFS:
                     return other_state.get_path()
 
                 if other_state in self.visited:
-                    if self.visited[other_state] > recursion_level:
-                        print('pomijam')
+                    if self.visited[other_state] < recursion_level:
                         continue
                     else:
                         self.visited[other_state] = recursion_level
-                        print('zmieniam')
+                        # print('zmieniam')
 
                 # a = False
                 # for st in self.frontier:
@@ -40,6 +38,7 @@ class DFS:
                 #     continue
 
                 else:
+                    self.visited[state] = state.rec
                     other_state.rec = recursion_level
                     expand_list.append(other_state)
 
