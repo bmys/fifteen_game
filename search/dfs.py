@@ -8,13 +8,14 @@ class DFS:
 
         self.frontier = list()
 
-        self.visited = set()
+        self.visited = dict()
 
     def _expand(self):
 
         state = self.frontier.pop(0)
-        self.visited.add(state)
+        self.visited[state] = state.rec
         expand_list = []
+        recursion_level = state.rec + 1
 
         if state.rec < 20:
             for move in state.available_moves:
@@ -24,7 +25,12 @@ class DFS:
                     return other_state.get_path()
 
                 if other_state in self.visited:
-                    continue
+                    if self.visited[other_state] > recursion_level:
+                        print('pomijam')
+                        continue
+                    else:
+                        self.visited[other_state] = recursion_level
+                        print('zmieniam')
 
                 # a = False
                 # for st in self.frontier:
@@ -34,7 +40,7 @@ class DFS:
                 #     continue
 
                 else:
-                    other_state.rec = state.rec + 1
+                    other_state.rec = recursion_level
                     expand_list.append(other_state)
 
             self.frontier = expand_list + self.frontier
