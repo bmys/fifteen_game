@@ -22,7 +22,7 @@ def manhattan(state, goal):
         goal_position = find_position(goal, i)
         current_position = find_position(state.frame, i)
 
-        distance = abs(sum(map(operator.sub, goal_position, current_position)))
+        distance = sum(map(abs, map(operator.sub, goal_position, current_position)))
 
         score += distance
     return score, state
