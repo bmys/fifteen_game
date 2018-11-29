@@ -13,20 +13,25 @@ class AStar:
 
         self.visited = set()
 
+        self.max_level_reached = 0
+
     def _expand(self):
 
         state = self.frontier.get()
         state = state[1]
         self.visited.add(state)
 
-        for move in self.game.available_moves(state.zero_position):
+        for move in state.available_moves:
             other_state = self.game.new_state(state, move)
+
+            recursion_level = other_state.rec + 1
+            self.max_level_reached = recursion_level if recursion_level > self.max_level_reached \
+                else self.max_level_reached
 
             if other_state in self.visited:
                 continue
 
             if self.game.check_result(other_state):
-                print('Win Wiecej niz 1 iteracje')
                 return other_state.get_path()
 
             else:
@@ -43,7 +48,8 @@ class AStar:
 
         first_state = State(self.game.frame, None, None,
                             self.game.zero_position,
-                            self.game.available_moves(self.game.zero_position))
+                            self.game.available_moves(self.game.zero_position),
+                            0)
 
         self.frontier.put(self.metric(first_state, self.game.goal_matrix))
 
