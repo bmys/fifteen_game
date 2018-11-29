@@ -9,7 +9,7 @@ class DFS:
 
         self.frontier = OrderedDict()
 
-        self.visited = dict()
+        self.explored = dict()
 
         self.max_recursion = max_recursion
         self.max_level_reached = 0
@@ -32,11 +32,11 @@ class DFS:
                 if self.game.check_result(other_state):
                     return other_state.get_path()
 
-                if other_state in self.visited:
-                    if self.visited[other_state] < other_state.rec:
+                if other_state in self.explored:
+                    if self.explored[other_state] < other_state.rec:
                         continue
                     else:
-                        self.visited[other_state] = other_state.rec
+                        self.explored[other_state] = other_state.rec
 
                 if other_state in self.frontier:
                     if self.frontier[other_state].rec < other_state.rec:
@@ -46,7 +46,7 @@ class DFS:
 
                 expand_list.append(other_state)
 
-            self.visited[state] = state.rec
+            self.explored[state] = state.rec
             expand_list.reverse()
 
             for st in expand_list:

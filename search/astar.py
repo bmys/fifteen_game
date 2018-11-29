@@ -11,7 +11,7 @@ class AStar:
 
         self.frontier = queue.PriorityQueue()
 
-        self.visited = set()
+        self.explored = set()
 
         self.max_level_reached = 0
 
@@ -19,7 +19,7 @@ class AStar:
 
         state = self.frontier.get()
         state = state[1]
-        self.visited.add(state)
+        self.explored.add(state)
 
         for move in state.available_moves:
             other_state = self.game.new_state(state, move)
@@ -28,7 +28,7 @@ class AStar:
             self.max_level_reached = recursion_level if recursion_level > self.max_level_reached \
                 else self.max_level_reached
 
-            if other_state in self.visited:
+            if other_state in self.explored:
                 continue
 
             if self.game.check_result(other_state):
