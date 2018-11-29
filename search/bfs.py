@@ -26,16 +26,13 @@ class BFS:
             current_state = iter(self.frontier).__next__()
             current_state = self.frontier.pop(current_state)
 
-            for move in self.game.available_moves(current_state.zero_position):
+            for move in current_state.available_moves:
                 other_state = self.game.new_state(current_state, move)
 
                 if other_state in self.frontier or other_state in self.explored:
                     continue
 
                 if self.game.check_result(other_state):
-                    # print('Przetworzone stany: %s' % len(self.explored))
-                    # print('wszystkie stany: %s' % (len(self.explored) + len(self.frontier)))
-
                     return other_state.get_path()
 
                 else:
