@@ -8,6 +8,7 @@ class BFS:
         self.game = Game(start, s_order)
         self.frontier = OrderedDict()
         self.explored = set()
+        self.max_level_reached = 0
 
     def search(self):
 
@@ -16,16 +17,16 @@ class BFS:
 
         first_state = State(self.game.frame, None, None,
                             self.game.zero_position,
-                            self.game.available_moves(self.game.zero_position))
+                            self.game.available_moves(self.game.zero_position),
+                            0)
 
-        for move in self.game.available_moves(first_state.zero_position):
+        for move in first_state.available_moves:
 
             new_state = self.game.new_state(first_state, move)
             if self.game.check_result(new_state):
                 return new_state.move
 
             self.frontier[hash(new_state)] = new_state
-        del first_state
 
         while self.frontier:
             current_state = iter(self.frontier).__next__()
