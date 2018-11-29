@@ -26,7 +26,7 @@ class BFS:
             if self.game.check_result(new_state):
                 return new_state.move
 
-            self.frontier[hash(new_state)] = new_state
+            self.frontier[new_state] = new_state
 
         while self.frontier:
             current_state = iter(self.frontier).__next__()
@@ -34,15 +34,18 @@ class BFS:
 
             for move in self.game.available_moves(current_state.zero_position):
                 other_state = self.game.new_state(current_state, move)
+
                 if other_state in self.frontier or other_state in self.explored:
                     continue
+
                 if self.game.check_result(other_state):
-                    print('Win Wiecej niz 1 iteracje')
-                    print('Przetworzone stany: %s' % len(self.explored))
-                    print('wszystkie stany: %s' % (len(self.explored) + len(self.frontier)))
+                    # print('Win Wiecej niz 1 iteracje')
+                    # print('Przetworzone stany: %s' % len(self.explored))
+                    # print('wszystkie stany: %s' % (len(self.explored) + len(self.frontier)))
 
                     return other_state.get_path()
+
                 else:
-                    self.frontier[hash(other_state)] = other_state
+                    self.frontier[other_state] = other_state
+
             self.explored.add(current_state)
-            current_state = self.game
