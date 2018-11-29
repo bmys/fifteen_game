@@ -3,7 +3,7 @@ import numpy as np
 
 class State:
 
-    def __init__(self, frame: object, parent: object, move: object, zero_pos: object, available_moves: object) -> object:
+    def __init__(self, frame: object, parent: object, move: object, zero_pos: object, available_moves: object, rec: int) -> object:
         """
         :param frame:
         :param parent:
@@ -16,6 +16,7 @@ class State:
         self.move = move
         self.zero_position = zero_pos
         self.available_moves = available_moves
+        self.rec = rec
 
     def get_path(self, path=''):
         # print(path)
