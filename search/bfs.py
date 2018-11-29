@@ -20,13 +20,7 @@ class BFS:
                             self.game.available_moves(self.game.zero_position),
                             0)
 
-        for move in first_state.available_moves:
-
-            new_state = self.game.new_state(first_state, move)
-            if self.game.check_result(new_state):
-                return new_state.move
-
-            self.frontier[new_state] = new_state
+        self.frontier[first_state] = first_state
 
         while self.frontier:
             current_state = iter(self.frontier).__next__()
@@ -39,7 +33,6 @@ class BFS:
                     continue
 
                 if self.game.check_result(other_state):
-                    # print('Win Wiecej niz 1 iteracje')
                     # print('Przetworzone stany: %s' % len(self.explored))
                     # print('wszystkie stany: %s' % (len(self.explored) + len(self.frontier)))
 
