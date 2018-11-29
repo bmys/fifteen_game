@@ -12,6 +12,7 @@ class DFS:
         self.visited = dict()
 
         self.max_recursion = max_recursion
+        self.max_level_reached = 0
 
     def _expand(self):
 
@@ -19,6 +20,9 @@ class DFS:
         state = state[0]
         expand_list = []
         recursion_level = state.rec + 1
+
+        self.max_level_reached = recursion_level if recursion_level > self.max_level_reached \
+            else self.max_level_reached
 
         if state.rec < self.max_recursion:
 
