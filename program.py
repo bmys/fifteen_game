@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from sys import argv
 import numpy as np
-
+from time import time
 from search.bfs import BFS
 from search.dfs import DFS
 from search.astar import AStar
@@ -68,10 +68,32 @@ if len(argv) > 1:
     search = search_type[method](puzzle, specific)
 
     # print(file_names)
+    t1 = time()
     solution = search.search()
-    print(solution)
+    t2 = time()
+    # print(solution)
     solution = '' if solution is None else solution
     save_to_file(file_names[1], solution)
+
+    sol_len = len(solution)
+    processed_cnt = len(search.explored)
+
+    try:
+        visited_cnt = len(search.frontier) + processed_cnt
+
+    except TypeError:
+        visited_cnt = search.frontier.qsize() + processed_cnt
+
+    max_depth = search.max_level_reached
+    elapsed_time = (t2 - t1) * 1000
+
+    stat = f'{sol_len}\n' \
+           f'{visited_cnt}\n' \
+           f'{processed_cnt}\n' \
+           f'{max_depth}\n' \
+           f'{elapsed_time:.3f}'
+
+    save_to_file(file_names[2], stat)
 
 
 
