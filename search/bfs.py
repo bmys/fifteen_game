@@ -33,6 +33,7 @@ class BFS:
                     continue
 
                 if self.game.check_result(other_state):
+                    self.max_level_reached = other_state.rec
                     return other_state.get_path()
 
                 else:
