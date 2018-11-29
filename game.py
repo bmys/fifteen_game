@@ -83,7 +83,7 @@ class Game:
         except ValueError:
             pass
 
-        return State(new_frame, state, direction, new_place, new_moves)
+        return State(new_frame, state, direction, new_place, new_moves, state.rec+1)
 
     def __repr__(self):
         return str(self.frame)
