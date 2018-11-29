@@ -27,7 +27,7 @@ class BFS:
             self.frontier[hash(new_state)] = new_state
         del first_state
 
-        while len(self.frontier) != 0:
+        while self.frontier:
             current_state = iter(self.frontier).__next__()
             current_state = self.frontier.pop(current_state)
 
