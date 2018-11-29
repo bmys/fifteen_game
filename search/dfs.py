@@ -28,19 +28,18 @@ class DFS:
 
             for move in state.available_moves:
                 other_state = self.game.new_state(state, move)
-                other_state.rec = recursion_level
 
                 if self.game.check_result(other_state):
                     return other_state.get_path()
 
                 if other_state in self.visited:
-                    if self.visited[other_state] < recursion_level:
+                    if self.visited[other_state] < other_state.rec:
                         continue
                     else:
-                        self.visited[other_state] = recursion_level
+                        self.visited[other_state] = other_state.rec
 
                 if other_state in self.frontier:
-                    if self.frontier[other_state].rec < recursion_level:
+                    if self.frontier[other_state].rec < other_state.rec:
                         continue
                     else:
                         self.frontier.pop(other_state)
@@ -63,8 +62,8 @@ class DFS:
 
         first_state = State(self.game.frame, None, None,
                             self.game.zero_position,
-                            self.game.available_moves(self.game.zero_position))
-        first_state.rec = 0
+                            self.game.available_moves(self.game.zero_position),
+                            0)
 
         self.frontier[first_state] = first_state.rec
 
