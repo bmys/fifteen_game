@@ -1,15 +1,16 @@
 from game import *
 from state import State
 from metrics import hamming, manhattan
-import queue
+import heapq
 
 
 class AStar:
     def __init__(self, start, metric=None):
+        assert metric in ('H', 'M')
         self.metric = hamming if metric == 'H' else manhattan
         self.game = Game(start, ['L', 'U', 'R', 'D'])
 
-        self.frontier = queue.PriorityQueue()
+        self.frontier = []
 
         self.explored = set()
 
@@ -17,7 +18,7 @@ class AStar:
 
     def _expand(self):
 
-        state = self.frontier.get()
+        state = heapq.heappop(self.frontier)
         state = state[1]
         self.explored.add(state)
 
@@ -36,7 +37,7 @@ class AStar:
 
             else:
                 val = self.metric(other_state, self.game.goal_matrix)
-                self.frontier.put(val)
+                heapq.heappush(self.frontier, val)
 
         return False
 
@@ -51,7 +52,7 @@ class AStar:
                             self.game.available_moves(self.game.zero_position),
                             0)
 
-        self.frontier.put(self.metric(first_state, self.game.goal_matrix))
+        heapq.heappush(self.frontier, self.metric(first_state, self.game.goal_matrix))
 
         while True:
             found_solution = self._expand()

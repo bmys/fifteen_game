@@ -42,7 +42,7 @@ class State:
         return hash(self.frame.tobytes())
 
     def __lt__(self, other):
-        return self
+        return self if self.rec < other.rec else other
 
-    def __eq__(self, other):
-        return self
+    # def __eq__(self, other):
+    #     return self

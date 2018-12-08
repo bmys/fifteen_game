@@ -1,7 +1,8 @@
 import sys, os
 from time import time
 
-so = ['rdul', 'rdlu', 'drul', 'drlu', 'ludr', 'lurd', 'uldr', 'ulrd']
+# so = ['rdul', 'rdlu', 'drul', 'drlu', 'ludr', 'lurd', 'uldr', 'ulrd']
+so = ['H', 'M']
 
 
 def runner():
@@ -11,13 +12,16 @@ def runner():
     for idx, file in enumerate(files):
         for order in so:
             file_name = file.strip('.txt')
-            file_name = f'{file_name}_bfs_{order}'
+            file_attr_name = 'hamm' if order == 'h' else 'manh'
+            file_name = f'{file_name}_astr_{file_attr_name}'
 
-            sol_file = f'solutions/{file_name}_sol.txt'
-            stat_file = f'stats/{file_name}_stats.txt'
+            sol_file = f'solutions2/{file_name}_sol.txt'
+            stat_file = f'stats2/{file_name}_stats.txt'
 
-            command = f'./program.py bfs {order} puzzles/{file} {sol_file} {stat_file}'
+            command = f'./program.py astar {order} puzzles/{file} {sol_file} {stat_file}'
             os.system(command)
+
+            # print(command)
 
         yield f'{idx+1} / {leng}'
 
