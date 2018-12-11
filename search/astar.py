@@ -8,6 +8,7 @@ class AStar:
     def __init__(self, start, metric=None):
         assert metric in ('H', 'M')
         self.metric = hamming if metric == 'H' else manhattan
+
         self.game = Game(start, ['L', 'U', 'R', 'D'])
 
         self.frontier = []
@@ -30,6 +31,9 @@ class AStar:
                 else self.max_level_reached
 
             if other_state in self.explored:
+                continue
+
+            if other_state in self.frontier:
                 continue
 
             if self.game.check_result(other_state):
