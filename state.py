@@ -33,7 +33,7 @@ class State:
             return False
 
     def __repr__(self):
-        return self.frame
+        return str(self.rec) + ' ' + self.move
 
     def __str__(self):
         return str(self.frame)

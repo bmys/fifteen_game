@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 
 class DFS:
-    def __init__(self, start, s_order, max_recursion=20):
+    def __init__(self, start, s_order, max_recursion=15):
         self.game = Game(start, s_order)
 
         self.frontier = OrderedDict()
@@ -16,11 +16,11 @@ class DFS:
 
     def _expand(self):
 
-        state = self.frontier.popitem(0)
+        state = self.frontier.popitem()
         state = state[0]
         expand_list = []
         recursion_level = state.rec + 1
-
+        # print(self.frontier)
         self.max_level_reached = recursion_level if recursion_level > self.max_level_reached \
             else self.max_level_reached
 
@@ -65,7 +65,7 @@ class DFS:
                             self.game.available_moves(self.game.zero_position),
                             0)
 
-        self.frontier[first_state] = first_state.rec
+        self.frontier[first_state] = first_state
 
         while self.frontier:
             found_solution = self._expand()

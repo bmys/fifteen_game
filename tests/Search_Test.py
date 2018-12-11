@@ -153,7 +153,7 @@ class BFSTest(unittest.TestCase):
         start_time = time.perf_counter()
 
         # dfs = DFS(state_array, ['L', 'R', 'U', 'D'])
-        dfs = AStar(state_array, 'M')
+        dfs = DFS(state_array, list('LRUD'))
         path = dfs.search()
         endtime = time.perf_counter()
 
