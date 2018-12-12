@@ -3,6 +3,7 @@ from state import State
 from search.bfs import BFS
 from search.dfs import DFS
 from search.astar import AStar
+from search.dfs_recur import DFS_r
 
 from program import load_puzzle
 
@@ -148,12 +149,23 @@ class BFSTest(unittest.TestCase):
         # [9, 10,11, 8],
         # [13, 14, 15, 12 ]
         # ])
+        #
 
-        state_array = load_puzzle('../puzzles/4x4_07_00145.txt')
+
+
+
+        state_array = load_puzzle('../puzzles/4x4_07_00156.txt')
         start_time = time.perf_counter()
 
+        # state_array = np.array([
+        #     [1, 2, 3],
+        #     [4, 8, 5],
+        #     [0, 7, 6]], dtype=np.uint8)
+
         # dfs = DFS(state_array, ['L', 'R', 'U', 'D'])
-        dfs = DFS(state_array, list('LRUD'))
+
+
+        dfs = DFS_r(state_array, list('ULRD'))
         path = dfs.search()
         endtime = time.perf_counter()
 

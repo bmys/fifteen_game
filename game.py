@@ -3,6 +3,7 @@ import operator
 from state import State
 from copy import copy
 
+
 class Game:
     def __init__(self, arr, s_order):
         self.frame = arr
@@ -11,6 +12,9 @@ class Game:
         # Create goal matrix
         self.goal_matrix = np.arange(1, self.frame.size+1).reshape(arr.shape)
         self.goal_matrix[-1][-1] = 0
+
+        self.goal_hash = hash(bytes(self.goal_matrix))
+
 
         self.choose = {
             'L': (0, -1),
@@ -52,12 +56,14 @@ class Game:
 
         return moves
 
-    def check_result(self, state):
+    def check_result(self, state: State) -> bool:
         """Check if state array and goal array are equal
         :param state
         :return:Bool
         """
+
         if np.array_equal(state.frame, self.goal_matrix):
+
             return True
         return False
 
