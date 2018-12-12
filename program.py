@@ -5,6 +5,7 @@ from time import time
 from search.bfs import BFS
 from search.dfs import DFS
 from search.astar import AStar
+from search.dfs_recur import DFS_r
 
 search_order = {'DLRU': ['D', 'L', 'R', 'U'],
  'DLUR': ['D', 'L', 'U', 'R'],
@@ -39,7 +40,7 @@ def load_puzzle(file_name):
 
     for idx, line in enumerate(text):
         text[idx] = tuple(int(i) for i in line.split(' '))
-    return np.array(text)
+    return np.array(text, dtype=np.uint8)
 
 
 def save_to_file(name, solution):
@@ -55,7 +56,7 @@ if len(argv) > 1:
     # print(f'spec: {spec}')
     # print('file_names:')
 
-    search_type = {'bfs': BFS, 'dfs': DFS, 'astar': AStar}
+    search_type = {'bfs': BFS, 'dfs': DFS, 'astar': AStar, 'dfsr': DFS_r}
 
     puzzle = load_puzzle( file_names[0])
     # print(f'specs: {spec}')
@@ -76,6 +77,8 @@ if len(argv) > 1:
     save_to_file(file_names[1], solution)
 
     sol_len = len(solution)
+    if sol_len == 0:
+        sol_len=-1
     processed_cnt = len(search.explored)
 
     try:
