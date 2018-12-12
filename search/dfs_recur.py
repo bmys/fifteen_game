@@ -51,5 +51,8 @@ class DFS_r:
                             self.game.zero_position,
                             self.game.available_moves(self.game.zero_position),
                             0)
-
-        return self._expand(first_state)
+        a = self._expand(first_state)
+        if a is False:
+            return ''
+        else:
+            return a
