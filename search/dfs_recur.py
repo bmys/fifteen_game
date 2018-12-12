@@ -8,14 +8,17 @@ class DFS_r:
 
         self.frontier = set()
 
-        self.visited = set()
+        self.explored = set()
+        self.max_level_reached = 0
 
     def _expand(self, st):
+        if st.rec > self.max_level_reached:
+            self.max_level_reached = st.rec
 
         if self.game.check_result(st):
             return st.get_path()
 
-        if st in self.frontier or st in self.visited or st.rec > 20:
+        if st in self.frontier or st in self.explored or st.rec > 20:
             return False
 
         self.frontier.add(st)
@@ -26,14 +29,14 @@ class DFS_r:
 
             val = self._expand(new_state)
 
-
             if val is False:
                 continue
+
             else:
                 return val
 
         self.frontier.remove(st)
-        self.visited.add(st)
+        self.explored.add(st)
 
 
         return False
