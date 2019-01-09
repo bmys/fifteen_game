@@ -6,8 +6,8 @@ import heapq
 
 class AStar:
     def __init__(self, start, metric=None):
-        assert metric in ('H', 'M')
-        self.metric = hamming if metric == 'H' else manhattan
+        assert metric in ('HAMM', 'MANH'), "Bad metric name"
+        self.metric = hamming if metric == 'HAMM' else manhattan
 
         self.game = Game(start, ['L', 'U', 'R', 'D'])
 

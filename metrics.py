@@ -5,10 +5,10 @@ import operator
 
 def hamming(state, goal):
     new_arr = state.frame - goal
-    new_arr[-1][-1] = 1
-    zero_pos = np.where(new_arr == 0)
+    new_arr[-1][-1] = 0
+    zero_pos = np.where(new_arr != 0)
     score = len(zero_pos[0])
-    return -score + state.rec, state
+    return score + state.rec, state
 
 
 def manhattan(state, goal):

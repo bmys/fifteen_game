@@ -5,7 +5,7 @@ from time import time
 from search.bfs import BFS
 from search.dfs import DFS
 from search.astar import AStar
-from search.dfs_recur import DFS_r
+from search.dfs_recur import DFSr
 
 search_order = {'DLRU': ['D', 'L', 'R', 'U'],
  'DLUR': ['D', 'L', 'U', 'R'],
@@ -56,12 +56,12 @@ if len(argv) > 1:
     # print(f'spec: {spec}')
     # print('file_names:')
 
-    search_type = {'bfs': BFS, 'dfs': DFS, 'astar': AStar, 'dfsr': DFS_r}
+    search_type = {'bfs': BFS, 'dfs': DFS, 'astr': AStar, 'dfsr': DFSr}
 
     puzzle = load_puzzle( file_names[0])
     # print(f'specs: {spec}')
 
-    if method != 'astar':
+    if method != 'astr':
         specific = search_order[spec.upper()]
     else:
         specific = spec.upper()

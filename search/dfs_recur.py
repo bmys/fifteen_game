@@ -2,14 +2,15 @@ from game import *
 from state import State
 
 
-class DFS_r:
-    def __init__(self, start, s_order):
+class DFSr:
+    def __init__(self, start, s_order,  rec_level=20):
         self.game = Game(start, s_order)
 
         self.frontier = set()
 
         self.explored = dict()
         self.max_level_reached = 0
+        self.rec_level = rec_level
 
     def _expand(self, st):
         if st.rec > self.max_level_reached:
@@ -18,12 +19,14 @@ class DFS_r:
         if self.game.check_result(st):
             return st.get_path()
 
-        if st in self.frontier or st.rec > 20:
+        if st in self.frontier or st.rec > self.rec_level:
             return False
 
         if st in self.explored:
             if st.rec < self.explored[st]:
                 self.explored[st] = st.rec
+            else:
+                return False
 
         self.frontier.add(st)
 
@@ -41,7 +44,6 @@ class DFS_r:
 
         self.frontier.remove(st)
         self.explored[st] = st.rec
-
 
         return False
 
