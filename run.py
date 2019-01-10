@@ -19,7 +19,7 @@ def runner(methods):
     leng = len(files)
 
     for method in methods:
-        print('='*5 + method + '='*5)
+        print('='*5 +'- ' + method + ' -' + '='*5)
 
         for idx, file in enumerate(files):
 
@@ -36,7 +36,7 @@ def runner(methods):
 
                 # print(command)
 
-            yield f'{idx+1} / {leng}'
+                yield f'{idx+1} / {leng} \t {file_name}'
 
 
 met = sys.argv[1:]
