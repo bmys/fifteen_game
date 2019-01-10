@@ -7,6 +7,7 @@ class DFS:
         self.game = Game(start, s_order)
 
         self.frontier = list()
+        self.front_set = set()
 
         self.explored = dict()
         self.max_level_reached = 0
@@ -16,7 +17,7 @@ class DFS:
     def _expand(self):
 
         state = self.frontier.pop()
-        self.watch = state
+
         expand_list = []
         recursion_level = state.rec + 1
 
@@ -32,6 +33,9 @@ class DFS:
                 if self.game.check_result(other_state):
                     return other_state.get_path()
 
+                if other_state in self.front_set:
+                    continue
+
                 if other_state in self.explored:
 
                     if self.explored[other_state] <= recursion_level:
@@ -40,9 +44,11 @@ class DFS:
                     else:
                         self.explored[other_state] = recursion_level
 
-                self.explored[state] = state.rec
                 expand_list.append(other_state)
+                self.front_set.add(other_state)
 
+            self.front_set.remove(state)
+            self.explored[state] = state.rec
             expand_list.reverse()
             self.frontier.extend(expand_list)
 
@@ -59,7 +65,7 @@ class DFS:
                             self.game.available_moves(self.game.zero_position), 0)
 
         self.frontier.append(first_state)
-
+        self.front_set.add(first_state)
         while self.frontier:
             found_solution = self._expand()
             if found_solution is False:
