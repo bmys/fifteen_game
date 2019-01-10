@@ -40,6 +40,8 @@ def runner(methods):
 
 
 met = sys.argv[1:]
+if len(met) == 0:
+    met = ['bfs', 'dfs', 'astr']
 print(met)
 t1 = time()
 for st in runner(met):

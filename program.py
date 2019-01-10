@@ -56,7 +56,7 @@ if len(argv) > 1:
     # print(f'spec: {spec}')
     # print('file_names:')
 
-    search_type = {'bfs': BFS, 'dfs': DFS, 'astr': AStar, 'dfsr': DFSr}
+    search_type = {'bfs': BFS, 'dfs': DFSr, 'astr': AStar, 'dfsr': DFSr}
 
     puzzle = load_puzzle( file_names[0])
     # print(f'specs: {spec}')
